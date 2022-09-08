@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(238, 205, 16);
+}
+
+nav img {
+    width: 140px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+
+.hero-section{
+    width: 100%;
+    /* background-color:gold; */
+    justify-content: center;
+    display: flex;
+}
+
+.carousel{
+    padding-top: 25px;
+    /* padding-bottom: 25px; */
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen-carru {
+    height: 500px;
+    width: 60%;
+}
+
+.cotizador{
+    background-color:gold;
+    margin-top: 25px;
+}
+
+.titulo-princ{
+    font-size: 35px;
+    align-items: center;
+    text-align: center;
+    /* justify-content: center; */
+    padding-top: 20px;
+}
+
+.formulario{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.lista{
+    /* border: solid black; */
+    justify-content: space-between;
+    width: 600px;
+}
+
+.lista p {
+    font-size: 22px;
+    margin-bottom: 20px;
+    margin-left: 55px;
+}
+
+.inputs{
+    /* border: solid 2px; */
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 65px;
+    /* height: 200px; */
+}
+
+.inputs input {
+    margin-bottom: 20px;
+    width: 450px;
+    height: 30px;
+}
+
+.inputs select{
+    width: 450px;
+    height: 30px;
+}
+
+
+.botonCalcu{
+    padding-top: 15px;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-right: 150px;
+}
+
+.calculadora {
+    background-color:aquamarine;
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    border: solid 3px;
+    font-size: 18px;
+    transition: 2s;
+}
+
+.calculadora:hover{
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.calculos{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffd700;
+    justify-content: center;
+}
+
+.op-list {
+    display: inline;
+    background-color: cornflowerblue;
+    padding-left: 25px;
+    height: 280px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 20px;
+    border-radius: 15px;
+    margin-right: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.4),0 2px 4px -1px rgba(0,0,0,.5);
+}
+
+.op-list p {
+    font-size: 18px;
+    color: white;
+}
+
+.op-list button{
+    width: 110px;
+    height: 35px;
+    margin-left: 70px;
+    justify-content: center;
+    margin-top: 18px;
+    /* background-color: #59CE8F; */
+    font-size: 16px;
+}
+
+/* .op-list .borrar{
+    background-color: red;
+    color: white;
+} */
