@@ -52,6 +52,61 @@ if (resultadoLS) {
 
 let form = document.getElementById("datos")
 
+/**
+ * Function Generate Element HTML
+ * @param element object
+ * @return string
+ */
+const generateHTML = (element) => {
+    return `<p>Su prestamo es de: $ ${element.monto}</p>
+            <p>Vas a devolver: $ ${element.interes.toFixed(2)}</p>
+            <p>En ${element.cantCuotas} cuotas de $ ${element.cuota.toFixed(2)} </p>
+            <button class="btn btn-success">Solicitar</button>
+            <button id="${element.id}" class="borrar btn btn-danger">Borrar</button>`;
+}
+
+/**
+ * Get Local Storage Data
+ * @returns {any}
+ */
+function getLocalStorage() {
+    return JSON.parse(localStorage.getItem('resultado'));
+}
+
+
+const fnBorrarCard = (calculoId) => {
+    const mostrarResult = getLocalStorage()
+    return mostrarResult.filter((calcu) => calcu.id !== calculoId)
+}
+
+// -------------borrar elementos
+const fnDeleteButtonsEvents = () => {
+    const borrarCard = document.querySelectorAll('.borrar');
+    borrarCard.forEach(buttonDelete => buttonDelete.addEventListener("click", (event) => {
+        event.target.parentElement.remove();
+        const calculosRestantes = fnBorrarCard(event.target.id)
+        localStorage.setItem('resultado', JSON.stringify(calculosRestantes))
+        // agregar codigo pra eliminar del localStorage por id
+    }));
+}
+
+
+/**
+ * Get local storage elements and append it to DOM
+ */
+const fnAppendLocalStorageElements = () => {
+    const mostrarResult = getLocalStorage()
+    const prestCalculado = document.querySelector('#cardCalculos')
+
+    mostrarResult.forEach((element) => {
+        const card = document.createElement('div')
+        card.classList.add('op-list')
+        card.innerHTML = generateHTML(element);
+        prestCalculado.append(card)
+    })
+    // Assign event to existing buttons for delete card
+    fnDeleteButtonsEvents();
+}
 
 //----------------Evento aplicado al boton calcular
 form.addEventListener("submit", (event) => {
