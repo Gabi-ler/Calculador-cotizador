@@ -86,7 +86,6 @@ const fnDeleteButtonsEvents = () => {
         event.target.parentElement.remove();
         const calculosRestantes = fnBorrarCard(event.target.id)
         localStorage.setItem('resultado', JSON.stringify(calculosRestantes))
-        // agregar codigo pra eliminar del localStorage por id
     }));
 }
 
