@@ -22,6 +22,19 @@ function conversorTasa(tasaRecibid, operador) {
     return tasaRecibid / operador
 }
 
+function generateHtml(eleme) {
+    return `
+                            <p>Su prestamo es de: $ ${eleme.monto}</p>
+                            <p>Con una tasa del % ${eleme.tasaRecibida} anual</p>
+                            <p>Vas a devolver: $ ${eleme.interes.toFixed(2)}</p>
+                            <p>En ${eleme.cantCuotas} cuotas de $ ${eleme.cuota.toFixed(2)} </p>
+                            <button class="btn btn-success solicito">Solicitar</button>
+                            <button id="${eleme.id}" class="btn btn-danger borro">Borrar</button>
+`
+}
+
+
+
 // const tasa = 0.045
 const num = 1
 const numOperador = 1000
@@ -67,15 +80,17 @@ const load = document.querySelector('#louder')
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
-    monto = document.querySelector('#monto').value
-    if (monto < 1000 ){ (
+    monto = Number(document.querySelector('#monto').value)
+    if (monto < 1000) {
         (Swal.fire({
             title: 'Inválido',
             text: 'Ingrese un número mayor o igual a 10000',
             icon: 'warning',
             showConfirmButton: false,
             timer: 2000
-        }))) }
+        }))
+        return
+    }
     tasaRecibida = document.querySelector('#tasaRecibida').value
     selectCuota = () => {
         let selectorCuotas = document.getElementById("lang")
@@ -84,7 +99,7 @@ form.addEventListener("submit", (e) => {
     }
     selectCuota(cantCuotas)
     resultado.push(calculador())
-    
+
 
     //-----------------Renderizado de calculos
     const prestCalculado = document.querySelector('#cardCalculos')
@@ -94,12 +109,12 @@ form.addEventListener("submit", (e) => {
 
     resultado.forEach((eleme) => {
         card.innerHTML = `
-                            <p>Su prestamo es de: $ ${eleme.monto}</p>
-                            <p>Con una tasa del % ${eleme.tasaRecibida} anual</p>
-                            <p>Vas a devolver: $ ${eleme.interes.toFixed(2)}</p>
-                            <p>En ${eleme.cantCuotas} cuotas de $ ${eleme.cuota.toFixed(2)} </p>
-                            <button class="btn btn-success solicito">Solicitar</button>
-                            <button id="${eleme.id}" class="btn btn-danger borro">Borrar</button>
+                        <p>Su prestamo es de: $ ${eleme.monto}</p>
+                        <p>Con una tasa del % ${eleme.tasaRecibida} anual</p>
+                        <p>Vas a devolver: $ ${eleme.interes.toFixed(2)}</p>
+                        <p>En ${eleme.cantCuotas} cuotas de $ ${eleme.cuota.toFixed(2)} </p>
+                        <button class="btn btn-success solicito">Solicitar</button>
+                        <button id="${eleme.id}" class="btn btn-danger borro">Borrar</button>
 `
         prestCalculado.append(card)
     })
@@ -181,7 +196,6 @@ const tazael = document.querySelector('#taza')
 const conversor = () => {
     const moneda1 = monedaUno.value
     const moneda2 = monedaDos.value
-    load.classList.add('loader-active')
 
     fetch(`https://api.exchangerate-api.com/v4/latest/${moneda1}`)
         .then(res => res.json())
@@ -193,7 +207,6 @@ const conversor = () => {
             cantidadDos.value = (cantidadUno.value * taza).toFixed(2);
         })
 }
-
 
 monedaUno.addEventListener('change', conversor);
 cantidadUno.addEventListener('input', conversor);
@@ -235,13 +248,13 @@ document.getElementById('form')
             .then(() => {
                 btn3.value = 'Enviar';
                 modalContainer.classList.remove('modal-container-active')
-                ((Swal.fire({
-                    title: 'Inválido',
-                    text: 'Enviado exitosamente',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 2500
-                })))
+                    ((Swal.fire({
+                        title: 'Inválido',
+                        text: 'Enviado exitosamente',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2500
+                    })))
             }, (err) => {
                 btn3.value = 'Enviar';
                 alert(JSON.stringify(err));
