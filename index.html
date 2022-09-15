@@ -13,14 +13,38 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        emailjs.init('Ragt_xxz6YXghw7Rk')
+    </script>
     <link rel="stylesheet" href="style.css">
     <title>Prestamos y cotizaciones</title>
 </head>
 
 <body>
     <header>
-        <nav>
+        <nav class="navbar navbar-expand-lg">
             <img src="./images/favicon.png" alt="Logo">
+            <div class="container-fluid">
+                <!-- <a class="navbar-brand" href="./index.html"><img src="./images/favicon.png" alt="Logo"> alt="Logo"></a> -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#coti">Cotizador de préstamos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#conver">Conversor de monedas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
     <main>
@@ -70,16 +94,17 @@
             </div>
         </section>
     </main>
-    <section class="cotizador">
-        <h1 class="titulo-princ">Cotizador de prestamos</h1>
+    <section id="coti" class="cotizador">
+        <h1 class="titulo-princ">Cotizador de préstamos</h1>
         <div class="formulario">
             <div class="lista">
                 <p>Ingrese el importe del prestamo</p>
+                <p>Ingrese la tasa de interes</p>
                 <p>Ingrese la cantidad de cuotas</p>
             </div>
             <form id="datos" class="inputs">
-                <input type="number" id="monto">
-                <!-- aca voy agregar otro input -->
+                <input type="number" id="monto" required>
+                <input type="number" id="tasaRecibida" required>
                 <select name="lenguajes" id="lang">
                     <option>Selecciona cuotas</option>
                     <option value="12" id="cuotas1">12</option>
@@ -94,12 +119,172 @@
             </form>
         </div>
     </section>
+    <!-- Sección ddonde se muestran los calculos  -->
     <section id="cardCalculos" class="calculos">
 
-
+        <!-- Sección del conversor  -->
     </section>
+    <section id="conver" class="conversor">
+        <hr class="container">
+        <h1>Conversor de monedas</h1>
+        <p>Escoje la moneda y la cantidad para realizar la conversion</p>
+        <div class="container">
+            <div class="moneda">
+                <select id="moneda-uno">
+                    <option value="AED">AED</option>
+                    <option value="ARS" selected>ARS</option>
+                    <option value="AUD">AUD</option>
+                    <option value="BGN">BGN</option>
+                    <option value="BRL">BRL</option>
+                    <option value="BSD">BSD</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CHF</option>
+                    <option value="CLP">CLP</option>
+                    <option value="CNY">CNY</option>
+                    <option value="COP">COP</option>
+                    <option value="CZK">CZK</option>
+                    <option value="DKK">DKK</option>
+                    <option value="DOP">DOP</option>
+                    <option value="EGP">EGP</option>
+                    <option value="EUR">EUR</option>
+                    <option value="FJD">FJD</option>
+                    <option value="GBP">GBP</option>
+                    <option value="GTQ">GTQ</option>
+                    <option value="HKD">HKD</option>
+                    <option value="HRK">HRK</option>
+                    <option value="HUF">HUF</option>
+                    <option value="IDR">IDR</option>
+                    <option value="ILS">ILS</option>
+                    <option value="INR">INR</option>
+                    <option value="ISK">ISK</option>
+                    <option value="JPY">JPY</option>
+                    <option value="KRW">KRW</option>
+                    <option value="KZT">KZT</option>
+                    <option value="MXN">MXN</option>
+                    <option value="MYR">MYR</option>
+                    <option value="NOK">NOK</option>
+                    <option value="NZD">NZD</option>
+                    <option value="PAB">PAB</option>
+                    <option value="PEN">PEN</option>
+                    <option value="PHP">PHP</option>
+                    <option value="PKR">PKR</option>
+                    <option value="PLN">PLN</option>
+                    <option value="PYG">PYG</option>
+                    <option value="RON">RON</option>
+                    <option value="RUB">RUB</option>
+                    <option value="SAR">SAR</option>
+                    <option value="SEK">SEK</option>
+                    <option value="SGD">SGD</option>
+                    <option value="THB">THB</option>
+                    <option value="TRY">TRY</option>
+                    <option value="TWD">TWD</option>
+                    <option value="UAH">UAH</option>
+                    <option value="USD">USD</option>
+                    <option value="UYU">UYU</option>
+                    <option value="VND">VND</option>selected
+                    <option value="ZAR">ZAR</option>
+                </select>
 
-    <script src="./javascript/app.js"></script>
+                <input type="number" id="cantidad-uno" placeholder="0" value="1">
+            </div>
+
+            <div class="taza-cambio-container">
+                <button class="bton" id="taza">Cambio</button>
+
+                <div class="cambio" id="cambio"></div>
+            </div>
+            <div class="moneda">
+                <select id="moneda-dos">
+                    <option value="AED">AED</option>
+                    <option value="ARS">ARS</option>
+                    <option value="AUD">AUD</option>
+                    <option value="BGN">BGN</option>
+                    <option value="BRL">BRL</option>
+                    <option value="BSD">BSD</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CHF</option>
+                    <option value="CLP">CLP</option>
+                    <option value="CNY">CNY</option>
+                    <option value="COP">COP</option>
+                    <option value="CZK">CZK</option>
+                    <option value="DKK">DKK</option>
+                    <option value="DOP">DOP</option>
+                    <option value="EGP">EGP</option>
+                    <option value="EUR">EUR</option>
+                    <option value="FJD">FJD</option>
+                    <option value="GBP">GBP</option>
+                    <option value="GTQ">GTQ</option>
+                    <option value="HKD">HKD</option>
+                    <option value="HRK">HRK</option>
+                    <option value="HUF">HUF</option>
+                    <option value="IDR">IDR</option>
+                    <option value="ILS">ILS</option>
+                    <option value="INR">INR</option>
+                    <option value="ISK">ISK</option>
+                    <option value="JPY">JPY</option>
+                    <option value="KRW">KRW</option>
+                    <option value="KZT">KZT</option>
+                    <option value="MXN">MXN</option>
+                    <option value="MYR">MYR</option>
+                    <option value="NOK">NOK</option>
+                    <option value="NZD">NZD</option>
+                    <option value="PAB">PAB</option>
+                    <option value="PEN">PEN</option>
+                    <option value="PHP">PHP</option>
+                    <option value="PKR">PKR</option>
+                    <option value="PLN">PLN</option>
+                    <option value="PYG">PYG</option>
+                    <option value="RON">RON</option>
+                    <option value="RUB">RUB</option>
+                    <option value="SAR">SAR</option>
+                    <option value="SEK">SEK</option>
+                    <option value="SGD">SGD</option>
+                    <option value="THB">THB</option>
+                    <option value="TRY">TRY</option>
+                    <option value="TWD">TWD</option>
+                    <option value="UAH">UAH</option>
+                    <option value="USD" selected>USD</option>
+                    <option value="UYU">UYU</option>
+                    <option value="VND">VND</option>
+                    <option value="ZAR">ZAR</option>
+
+                </select>
+
+                <input type="number" id="cantidad-dos" placeholder="0">
+
+            </div>
+        </div>
+    </section>
+    <!-- Section modal -->
+    <section>
+        <div id="modal-containers" class="modal-container">
+            <div id="modal" class="my-modal">
+                <form id="form">
+                    <h2>Ingrese sus datos aqui y un representaste se estara comunicando con usted</h2>
+                    <div class="mb-2">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" placeholder="Nombre" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="last" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" placeholder="Apellido" name="lastname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="phone">Teléfono</label>
+                        <input type="number" class="form-control" placeholder="Teléfono" name="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleCheck1">Correo electrónico</label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" required>
+                    </div>
+                    <input type="submit" id="button" value="Enviar" class="btn btn-primary"></input>
+                </form>
+                <button id="button-cerrar" class="btn btn-warning my-3">Cerrar</button>
+            </div>
+        </div>
+    </section>
+    <div class="lds-ring loader" id="loader"><div></div><div></div><div></div><div></div></div>
+    <script src="./javascript/app3.js"></script>
 </body>
 
 </html>

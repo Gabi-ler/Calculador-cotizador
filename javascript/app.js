@@ -66,70 +66,63 @@ form.addEventListener("submit", (e) => {
     selectCuota(cantCuotas)
     resultado.push(calculador())
 
-//-----------------Renderizado de calculos
+    
+    //-----------------Renderizado de calculos
     const prestCalculado = document.querySelector('#cardCalculos')
     const card = document.createElement('div')
     card.classList.add('op-list')
 
- 
+
     resultado.forEach((eleme) => {
         card.innerHTML = `
                             <p>Su prestamo es de: $ ${eleme.monto}</p>
                             <p>Vas a devolver: $ ${eleme.interes.toFixed(2)}</p>
                             <p>En ${eleme.cantCuotas} cuotas de $ ${eleme.cuota.toFixed(2)} </p>
                             <button class="btn btn-success">Solicitar</button>
-                            <button id="borrar" class="btn btn-danger">Borrar</button>
+                            <button id="${eleme.id}" class="btn btn-danger borro">Borrar</button>
 `
         prestCalculado.append(card)
     })
-        
+
     //-----------------localStorage
     const calculosJSON = JSON.stringify(resultado)
     localStorage.setItem('resultado', calculosJSON)
-    
-    /*const borrarCard = document.querySelectorAll('.borrar');
+
+    const borrarCard = document.querySelectorAll('.borro');
     borrarCard.forEach(buttonDelete => buttonDelete.addEventListener("click", (event) => {
         event.target.parentElement.remove();
         // agregar codigo pra eliminar del localStorage por id
-    }));*/
+    }))
 })
 
-    const prestCalculado = document.querySelector('#cardCalculos')
-    const mostrarResult = JSON.parse(localStorage.getItem('resultado'))
-    console.log(mostrarResult);
-    
-    mostrarResult.forEach((eleme) => {
-        const card = document.createElement('div')
-        card.classList.add('op-list')
-        card.innerHTML = `
+const prestCalculado = document.querySelector('#cardCalculos')
+const mostrarResult = JSON.parse(localStorage.getItem('resultado'))
+console.log(mostrarResult);
+console.log(resultado);
+
+mostrarResult.forEach((eleme) => {
+    const card = document.createElement('div')
+    card.classList.add('op-list')
+    card.innerHTML = `
                                 <p>Su prestamo es de: $ ${eleme.monto}</p>
                                 <p>Vas a devolver: $ ${eleme.interes.toFixed(2)}</p>
                                 <p>En ${eleme.cantCuotas} cuotas de $ ${eleme.cuota.toFixed(2)} </p>
                                 <button class="btn btn-success">Solicitar</button>
-                                <button id="borrar" class="btn btn-danger">Borrar</button>
+                                <button id="${eleme.id}" class="btn btn-danger borro">Borrar</button>
     `
-        prestCalculado.append(card)
+    prestCalculado.append(card)
+})
+
+// -------------borrar elementos
+const borrarCard = document.querySelectorAll('.borro');
+borrarCard.forEach(buttonDelete => {
+    // return buttonDelete.addEventListener("click", (event) => {
+    //     event.target.parentElement.remove();
+
+    // })
+    return buttonDelete.addEventListener("click", () => {
+        localStorage.removeItem('resultado')
     })
-    
-    const borrarCard = document.querySelector('#borrar')
-    
-    const fnBorrarCard = () => {
-        const calculo = mostrarResult.find((calcu) => calcu.id === id)
-        const indice =  mostrarResult.indexOf(calculo)
-
-        mostrarResult.splice(indice, 1)
-    }
-
-    borrarCard.addEventListener("click", fnBorrarCard)
-    
-    // -------------borrar elementos
-    // const borrarCard = document.querySelectorAll('.borrar');
-    /*borrarCard.forEach(buttonDelete => buttonDelete.addEventListener("click", (event) => {
-        event.target.parentElement.remove();
-        // agregar codigo pra eliminar del localStorage por id
-    }));*/
-    
-
-
+})
 
 

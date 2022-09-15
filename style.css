@@ -3,38 +3,54 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 nav{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color:rgb(238, 205, 16);
+    
 }
 
 nav img {
     width: 140px;
     height: auto;
-    margin-bottom: 10px;
 }
 
 
 .hero-section{
     width: 100%;
+    height: auto;
     /* background-color:gold; */
     justify-content: center;
     display: flex;
+    padding-top: 140px;
 }
 
 .carousel{
     padding-top: 25px;
     /* padding-bottom: 25px; */
-    width: 80%;
+    width: 70%;
     align-items: center;
     justify-content: center;
+
 }
 
 .imagen-carru {
     height: 500px;
-    width: 60%;
+    width: 50%;
 }
 
 .cotizador{
@@ -46,7 +62,6 @@ nav img {
     font-size: 35px;
     align-items: center;
     text-align: center;
-    /* justify-content: center; */
     padding-top: 20px;
 }
 
@@ -67,6 +82,7 @@ nav img {
     font-size: 22px;
     margin-bottom: 20px;
     margin-left: 55px;
+    font-weight:bolder;
 }
 
 .inputs{
@@ -140,6 +156,7 @@ nav img {
 .op-list p {
     font-size: 18px;
     color: white;
+    font-weight: bold;
 }
 
 .op-list button{
@@ -147,7 +164,7 @@ nav img {
     height: 35px;
     margin-left: 70px;
     justify-content: center;
-    margin-top: 18px;
+    margin-top: 5px;
     /* background-color: #59CE8F; */
     font-size: 16px;
 }
@@ -156,3 +173,110 @@ nav img {
     background-color: red;
     color: white;
 } */
+
+/* ----------Estilo para conversor------------- */
+.conversor {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffd700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+
+
+.bton {
+    color: white;
+    background:#59CE8F ;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 5px 12px;
+}
+
+.conversor-imagen {
+    width: 150px;
+} 
+
+.moneda {
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.moneda select {
+    padding: 10px 20px 10px 10px;
+    border: 1px solid #dedede;
+    font-size: 16px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.moneda input {
+    border: 0;
+    font-size: 30px;
+    text-align: right;
+}
+
+.taza-cambio-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.cambio {
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+select:focus,
+input:focus,
+button:focus {
+    outline: 0;
+}
+
+@media (max-width:600px) {
+    .moneda input {
+        width: 200px;
+    }
+}
+
+/* Estilo del modal */
+.modal-container {
+    background-color: rgba(0,0,0, 0.3);
+    width: 100%;
+    height: 50vw;
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all .2s ease-in-out;
+}
+
+.my-modal {
+    width: 450px;
+    height: 600px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.modal-container-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 4;
+}
+
+/* Estilos de Louder */
