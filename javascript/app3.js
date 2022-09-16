@@ -9,7 +9,6 @@ class Banco {
     }
 }
 
-
 function financiacion(num1, num2, num3, num4) {
     return num1 * (num2 + num3 * num4)
 }
@@ -21,19 +20,6 @@ function cuotas(montoFinal, cuotas) {
 function conversorTasa(tasaRecibid, operador) {
     return tasaRecibid / operador
 }
-
-function generateHtml(eleme) {
-    return `
-                            <p>Su prestamo es de: $ ${eleme.monto}</p>
-                            <p>Con una tasa del % ${eleme.tasaRecibida} anual</p>
-                            <p>Vas a devolver: $ ${eleme.interes.toFixed(2)}</p>
-                            <p>En ${eleme.cantCuotas} cuotas de $ ${eleme.cuota.toFixed(2)} </p>
-                            <button class="btn btn-success solicito">Solicitar</button>
-                            <button id="${eleme.id}" class="btn btn-danger borro">Borrar</button>
-`
-}
-
-
 
 // const tasa = 0.045
 const num = 1
@@ -49,7 +35,6 @@ let salida;
 
 //----------------Funcion que integra el calculo princiapl del prestamo----
 const calculador = () => {
-    
     if (cantCuotas != 12 && cantCuotas != 24 && cantCuotas != 36 && cantCuotas != 48) return (
         (Swal.fire({
             title: 'Inválido',
@@ -75,8 +60,9 @@ if (resultadoLS) {
 
 let form = document.getElementById("datos")
 
-const load = document.querySelector('#louder')
-//----------------Evento aplicado al boton calcular
+// const load = document.querySelector('#louder')
+
+//-------------Evento aplicado al boton calcular
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
@@ -99,7 +85,7 @@ form.addEventListener("submit", (e) => {
     }
     selectCuota(cantCuotas)
     resultado.push(calculador())
-
+    form.reset()
 
     //-----------------Renderizado de calculos
     const prestCalculado = document.querySelector('#cardCalculos')
@@ -124,6 +110,7 @@ form.addEventListener("submit", (e) => {
     const calculosJSON = JSON.stringify(resultado)
     localStorage.setItem('resultado', calculosJSON)
 
+    //------Boton solicitar, para brindar datos de contacto-----
     const solicitar = document.querySelectorAll('.solicito')
     solicitar.forEach(buttonsolicitar => {
         return buttonsolicitar.addEventListener('click', () => {
@@ -131,8 +118,8 @@ form.addEventListener("submit", (e) => {
         })
     })
 
+   //------Boton borrar, para borrar calculos----- 
     const borrarCard = document.querySelectorAll('.borro');
-
     borrarCard.forEach(buttonDelete => {
         return buttonDelete.addEventListener("click", (event) => {
             event.target.parentElement.remove();
@@ -146,7 +133,7 @@ form.addEventListener("submit", (e) => {
 })
 
 
-//-------------------- renderizado del localStorage
+//-------------------- Renderizado del localStorage------------------
 const prestCalculado = document.querySelector('#cardCalculos')
 const mostrarResult = JSON.parse(localStorage.getItem('resultado'))
 
@@ -165,6 +152,7 @@ mostrarResult.forEach((eleme) => {
 
 })
 
+//------Boton solicitar, para brindar datos de contacto-----
 const solicitar = document.querySelectorAll('.solicito')
 solicitar.forEach(buttonsolicitar => {
     return buttonsolicitar.addEventListener('click', () => {
@@ -172,7 +160,7 @@ solicitar.forEach(buttonsolicitar => {
     })
 })
 
-
+//------Boton borrar, para borrar calculos-----
 const borrarCard = document.querySelectorAll('.borro');
 borrarCard.forEach(buttonDelete => buttonDelete.addEventListener("click", (event) => {
     event.target.parentElement.remove();
@@ -184,7 +172,7 @@ borrarCard.forEach(buttonDelete => buttonDelete.addEventListener("click", (event
 }))
 
 
-// --------------Programa para el Conversor------------
+// --------------Programa para el Conversor a traves de API------------
 const monedaUno = document.querySelector('#moneda-uno')
 const monedaDos = document.querySelector('#moneda-dos')
 const cantidadUno = document.querySelector('#cantidad-uno')
@@ -192,7 +180,6 @@ const cantidadDos = document.querySelector('#cantidad-dos')
 const cambio = document.querySelector('#cambio')
 const tazael = document.querySelector('#taza')
 
-//fetch exchange rate and update
 const conversor = () => {
     const moneda1 = monedaUno.value
     const moneda2 = monedaDos.value
@@ -222,7 +209,7 @@ taza.addEventListener('click', () => {
 })
 conversor()
 
-//------Abrir modal de contacto-----
+//----------- Abrir modal de contacto--------
 const solicitar1 = document.querySelectorAll('.solicito')
 const modalContainer = document.querySelector('#modal-containers')
 const cerrarModal = document.querySelector('#button-cerrar')
@@ -232,7 +219,7 @@ cerrarModal.addEventListener("click", () => {
 })
 
 
-// ---- codigo para enviar mail----
+// --------- Código para enviar mail utilizando libreria email JS----
 const btn3 = document.getElementById('button');
 
 document.getElementById('form')
